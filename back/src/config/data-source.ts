@@ -13,9 +13,9 @@ export const AppDataSource = new DataSource({
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_NAME,
-  synchronize: true,
-
-  dropSchema: true,
+  // synchronize: true,
+  ssl:true,
+  // dropSchema: true,
   // logging: false,
   entities: ["./src/entities/*.ts"],
   subscribers: [],
