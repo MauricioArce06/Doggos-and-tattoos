@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
-import path from "path";
 
-dotenv.config({ path: path.resolve(__dirname, ".env") });
+dotenv.config();
 
 const PORT: number | string = Number(process.env.PORT) || 3000;
 const DB_HOST = process.env.DB_HOST || "localhost";
