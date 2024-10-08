@@ -14,10 +14,10 @@ export const AppDataSource = new DataSource({
   password: DB_PASSWORD,
   database: DB_NAME,
   // synchronize: true,
-  ssl:true,
+  ssl: true,
   // dropSchema: true,
   // logging: false,
-  entities: ["./src/entities/*.ts"],
+  entities: ["dist/entities/*.js"],
   subscribers: [],
   migrations: [],
 });
