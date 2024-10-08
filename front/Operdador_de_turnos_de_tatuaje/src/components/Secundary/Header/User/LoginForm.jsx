@@ -12,16 +12,16 @@ export default function LoginForm() {
 
   const dispach = useDispatch();
   const Navigate = useNavigate();
+  const backendUrl =
+    import.meta.env.VITE_BACK_API_URL || "http://localhost:3000";
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      await axios
-        .post("http://localhost:3000/user/login", values)
-        .then((res) => {
-          dispach(login(res.data));
-          alert("Successful login");
-          Navigate("/");
-        });
+      await axios.post(`${backendUrl}/user/login`, values).then((res) => {
+        dispach(login(res.data));
+        alert("Successful login");
+        Navigate("/");
+      });
     } catch (error) {
       alert("Incorrect username or password");
     } finally {

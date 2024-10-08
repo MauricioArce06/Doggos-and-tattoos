@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAppointments } from "../../../redux/reducer";
 
+const backendUrl = import.meta.env.VITE_BACK_API_URL || "http://localhost:3000";
+
 export default function Turno() {
   const id = useSelector((state) => state.user.id);
   const Navigate = useNavigate();
@@ -15,6 +17,7 @@ export default function Turno() {
   const turno = useSelector((state) => state.appointment.userAppointments);
 
   useEffect(() => {
+    console.log(backendUrl);
     if (!id) {
       Swal.fire({
         icon: "error",
@@ -26,7 +29,7 @@ export default function Turno() {
       try {
         dispach(setAppointments([]));
         await axios
-          .post(`http://localhost:3000/appointments/`, { userId: id })
+          .post(`${backendUrl}/appointments/`, { userId: id })
           .then((res) => {
             // setTurnos(res.data);
             dispach(setAppointments(res.data));
@@ -55,12 +58,12 @@ export default function Turno() {
       if (result.isConfirmed) {
         try {
           await axios
-            .put(`http://localhost:3000/appointments/cancel/${turnoId}`)
+            .put(`${backendUrl}/appointments/cancel/${turnoId}`)
             .then((res) => {
               console.log(res.data);
               // dispach(setAppointments(res.data));
               axios
-                .post(`http://localhost:3000/appointments`, { userId: id })
+                .post(`${backendUrl}/appointments`, { userId: id })
                 .then((user) => {
                   console.log(user.data);
                   dispach(setAppointments([]));

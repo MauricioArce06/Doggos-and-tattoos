@@ -6,6 +6,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { closeModalLog } from "../../../../redux/reducer.js";
 
+const backendUrl = import.meta.env.VITE_BACK_API_URL || "http://localhost:3000";
 export default function RegisterForm() {
   // const id = useSelector((state) => state.user.id);
   // const perfilPicture = useSelector((state) => state.user.perfilPicture);
@@ -13,12 +14,12 @@ export default function RegisterForm() {
   const dispach = useDispatch();
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      await axios
-        .post("http://localhost:3000/user/register", values)
-        .then(() => {
-          dispach(closeModalLog());
-          alert("User created successfully. Log in to schedule an appointment");
-        });
+      console.log(backendUrl);
+
+      await axios.post(`${backendUrl}/user/register`, values).then(() => {
+        dispach(closeModalLog());
+        alert("User created successfully. Log in to schedule an appointment");
+      });
     } catch (error) {
       console.log(error);
       alert(error.response.data.error);

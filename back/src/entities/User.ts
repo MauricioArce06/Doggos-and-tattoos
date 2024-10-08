@@ -1,10 +1,10 @@
 import {
-  Column,
   Entity,
-  JoinColumn,
-  OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  OneToMany,
+  JoinColumn,
 } from "typeorm";
 import { Credentials } from "./credential";
 import { Appointments } from "./appointments";
@@ -38,6 +38,5 @@ export class User {
   credential: Credentials;
 
   @OneToMany(() => Appointments, (appointment) => appointment.user)
-  @JoinColumn()
   appointment: Appointments[];
 }

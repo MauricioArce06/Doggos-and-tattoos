@@ -4,6 +4,7 @@ import { validarTurno } from "../../../../helpers/validarTurno";
 import { CustomRegister } from "../../../../Styles/loginRegisterStyles";
 import axios from "axios";
 import { useSelector } from "react-redux";
+const backendUrl = import.meta.env.VITE_BACK_API_URL || "http://localhost:3000";
 
 export default function ScheduleForm() {
   const userId = useSelector((state) => state.user.id);
@@ -26,7 +27,7 @@ export default function ScheduleForm() {
       delete values.userId;
 
       await axios
-        .post("http://localhost:3000/appointments/schedule", {
+        .post(`${backendUrl}/appointments/schedule`, {
           ...values,
           user: Number(userId),
         })

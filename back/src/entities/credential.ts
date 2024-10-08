@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity()
@@ -18,10 +12,6 @@ export class Credentials {
   @Column({ select: false })
   password: string;
 
-  @OneToOne(() => User, (user) => user.credential, {
-    cascade: true,
-    onDelete: "CASCADE",
-  })
-  @JoinColumn()
-  user: User;
+  @OneToOne(() => User, (user) => user.credential)
+  user: User; // Relación inversa
 }

@@ -16,8 +16,8 @@ export const AppDataSource = new DataSource({
   // synchronize: true,
   ssl: true,
   // dropSchema: true,
-  // logging: false,
-  entities: ["dist/entities/*.js"],
+  logging: false,
+  entities: ["./src/entities/*.ts"],
   subscribers: [],
   migrations: [],
 });
